@@ -7,7 +7,7 @@ public class Note {
     return note + octave + " ";
   }
 
-  public void increaseOctave(int num){
+  public void increaseOctave(){
     octave += 1;
     if(octave > 9) resetOctave();
   }
