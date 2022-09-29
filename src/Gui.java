@@ -77,8 +77,9 @@ public class Gui extends JFrame implements ActionListener{
 
   void playCommands(){
     String txt = this.textArea.getText();
-    Parser.parseCommands(txt);
+    String song = Parser.parseCommands(txt);
 
+    Player.play(song);
   }
 
   void loadFile(){
