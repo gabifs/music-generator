@@ -13,9 +13,9 @@ import javax.swing.JButton;
 public class Gui extends JFrame implements ActionListener{
 
   // JFrame frame;
-  JButton playButton;
-  JButton loadFileButton;
-  JButton saveMidiButton;
+  JButton buttonPlay;
+  JButton buttonLoadFile;
+  JButton buttonSaveMidi;
   JTextArea textArea;
 
   Gui(){
@@ -35,38 +35,57 @@ public class Gui extends JFrame implements ActionListener{
     JScrollPane scrollPane = new JScrollPane(textArea);
 
     // Define play button
-    this.playButton = new JButton("Play");
-    playButton.addActionListener(this);
+    this.buttonPlay = new JButton("Play");
+    buttonPlay.addActionListener(this);
 
     // Define load file button
-    this.loadFileButton = new JButton("Carregar arquivo");
-    loadFileButton.addActionListener(this);
+    this.buttonLoadFile = new JButton("Carregar arquivo");
+    buttonLoadFile.addActionListener(this);
 
     // Define save midi file
-    this.saveMidiButton = new JButton("Salvar MIDI");
-    saveMidiButton.addActionListener(this);
+    this.buttonSaveMidi = new JButton("Salvar MIDI");
+    buttonSaveMidi.addActionListener(this);
 
     // Adds components to panel, and panel to frame
     panel.add(title);
+    panel.add(this.buttonLoadFile);
+    panel.add(this.buttonSaveMidi);
     panel.add(scrollPane);
-    panel.add(this.playButton);
-    panel.add(this.loadFileButton);
-    panel.add(this.saveMidiButton);
+    panel.add(this.buttonPlay);
 
     this.add(panel);
 
     // Adds config to frame
     this.setTitle("Musicnator");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.pack();
-		this.setLocationRelativeTo(null);
-		this.setSize(512, 400);;
-		this.setVisible(true);
+    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    this.pack();
+    this.setLocationRelativeTo(null);
+    this.setSize(512, 400);;
+    this.setVisible(true);
   }
 
   @Override
   public void actionPerformed(ActionEvent event) {
 
+    if (event.getSource() == this.buttonPlay) playCommands();
 
+    if (event.getSource() == this.buttonLoadFile) loadFile();
+
+    if (event.getSource() == this.buttonSaveMidi) saveMidi();
+
+  }
+
+  void playCommands(){
+    String txt = this.textArea.getText();
+    Parser.parseCommands(txt);
+
+  }
+
+  void loadFile(){
+    System.out.println("Carregar arquivo");
+  }
+
+  void saveMidi(){
+    System.out.println("Salvar MIDI");
   }
 }
