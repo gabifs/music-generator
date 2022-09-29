@@ -4,7 +4,7 @@ public class Note {
   int octave = DEFAULT_OCTAVE;
 
   public String runNote(String note){
-    return note + octave;
+    return note + octave + " ";
   }
 
   public void increaseOctave(int num){
