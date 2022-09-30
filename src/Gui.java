@@ -91,6 +91,10 @@ public class Gui extends JFrame implements ActionListener{
   }
 
   void saveMidi(){
-    System.out.println("Salvar MIDI");
+    String txt = this.textArea.getText();
+    String song = Parser.parseCommands(txt);
+    Files file = new Files();
+
+    file.saveMidiFile(song);
   }
 }

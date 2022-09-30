@@ -2,7 +2,9 @@ import javax.swing.JFrame;
 import javax.swing.JFileChooser;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.BufferedReader;
+import org.jfugue.Pattern;
 
 
 public class Files {
@@ -36,5 +38,19 @@ public class Files {
 
     }
     return text;
+  }
+
+  public void saveMidiFile(String txt){
+    String fileName = "sua_musica.mid";
+    File file = new File(fileName);
+
+    org.jfugue.Player player = new org.jfugue.Player();
+    try{
+      player.saveMidi(new Pattern(txt), file);
+
+    }catch (IOException err){
+      System.out.println("Error saving the file.");
+      err.printStackTrace();
+    }
   }
 }
