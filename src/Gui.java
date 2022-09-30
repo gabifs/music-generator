@@ -12,11 +12,11 @@ import javax.swing.JButton;
 
 public class Gui extends JFrame implements ActionListener{
 
-  // JFrame frame;
   JButton buttonPlay;
   JButton buttonLoadFile;
   JButton buttonSaveMidi;
   JTextArea textArea;
+  JFrame frame;
 
   Gui(){
     JPanel panel = new JPanel(new FlowLayout());
@@ -28,23 +28,23 @@ public class Gui extends JFrame implements ActionListener{
 
     // Define TextArea
     this.textArea = new JTextArea();
-    textArea.setLineWrap(true);
-    textArea.setSize(448, 64);
-    textArea.setFont(new Font("Consolas", Font.PLAIN, 20));
-    textArea.setRows(10);
+    this.textArea.setLineWrap(true);
+    this.textArea.setSize(448, 64);
+    this.textArea.setFont(new Font("Consolas", Font.PLAIN, 20));
+    this.textArea.setRows(10);
     JScrollPane scrollPane = new JScrollPane(textArea);
 
     // Define play button
     this.buttonPlay = new JButton("Play");
-    buttonPlay.addActionListener(this);
+    this.buttonPlay.addActionListener(this);
 
     // Define load file button
     this.buttonLoadFile = new JButton("Carregar arquivo");
-    buttonLoadFile.addActionListener(this);
+    this.buttonLoadFile.addActionListener(this);
 
     // Define save midi file
     this.buttonSaveMidi = new JButton("Salvar MIDI");
-    buttonSaveMidi.addActionListener(this);
+    this.buttonSaveMidi.addActionListener(this);
 
     // Adds components to panel, and panel to frame
     panel.add(title);
@@ -78,12 +78,16 @@ public class Gui extends JFrame implements ActionListener{
   void playCommands(){
     String txt = this.textArea.getText();
     String song = Parser.parseCommands(txt);
+    System.out.println(song);
 
     Player.play(song);
   }
 
   void loadFile(){
-    System.out.println("Carregar arquivo");
+    Files file = new Files();
+    String text = file.loadTextFile(this.frame);
+
+    this.textArea.setText(text);
   }
 
   void saveMidi(){

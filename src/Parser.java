@@ -71,7 +71,7 @@ public class Parser {
           break;
 
         default:
-          if(index-1 > 0){
+          if(index > 0){
             String prevChar = Character.toString(txt.charAt(index-1));
             ArrayList<String> charSet = new ArrayList<String>();
             charSet.add("A");
@@ -83,7 +83,11 @@ public class Parser {
             charSet.add("G");
             if(charSet.contains(prevChar)){
               song = song + notesManager.runNote(prevChar);
+            }else {
+              song = song + "R ";
             }
+          } else {
+            song = song + "R ";
           }
 
       }
