@@ -4,9 +4,11 @@ public class Parser {
 
   public static String parseCommands(String txt){
 
-    String song = "";
     Note notesManager = new Note();
     Instrument instrumentManager = new Instrument();
+    Volume volumeManager = new Volume();
+
+    String song = "X[Volume]="+volumeManager.VOLUME_DEFAULT+" ";
 
     for(int index = 0; index < txt.length(); index++){
       var currentChar = txt.charAt(index);
@@ -28,7 +30,8 @@ public class Parser {
           break;
 
         case ' ':
-          // aumenta o volume
+          song = song + volumeManager.increase();
+          break;
 
         case 'O':
         case 'o':
