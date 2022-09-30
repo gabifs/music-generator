@@ -6,6 +6,7 @@ public class Parser {
 
     String song = "";
     Note notesManager = new Note();
+    Instrument instrumentManager = new Instrument();
 
     for(int index = 0; index < txt.length(); index++){
       var currentChar = txt.charAt(index);
@@ -35,19 +36,24 @@ public class Parser {
         case 'i':
         case 'U':
         case 'u':
-          // change instrument harp
+          song = song + instrumentManager.useHarpichord();
+          break;
 
         case '\n':
-          // troca instrumengo tubular bells
+          song = song + instrumentManager.useTubularBells();
+          break;
 
         case ';':
-          // troca instrumento pan flute
+          song = song + instrumentManager.usePanFlute();
+          break;
 
         case ',':
-          // troca isntrumento church organ
+          song = song + instrumentManager.useChurchOrgan();
+          break;
 
         case '!':
-          // troca instrumento agogo
+          song = song + instrumentManager.useAgogo();
+          break;
 
         case '1':
         case '2':
@@ -58,7 +64,8 @@ public class Parser {
         case '7':
         case '8':
         case '9':
-          // troca instrumento
+          song = song + instrumentManager.increaseInstrument(Character.getNumericValue(currentChar));
+          break;
 
         default:
           if(index-1 > 0){
